@@ -1,0 +1,15 @@
+embed-server
+
+module add --name=org.postgresql --resources=/opt/jboss/wildfly/standalone/deployments/postgresql-42.7.2.jar --dependencies=javax.api,jakarta.transaction.api
+
+/subsystem=datasources/jdbc-driver=postgres:add(driver-name=postgres,driver-module-name=org.postgresql,driver-class-name=org.postgresql.Driver)
+
+data-source add \
+    --name=MyPostgresDS \
+    --jndi-name=java:/jboss/datasources/MyPostgresDS \
+    --driver-name=postgres \
+    --connection-url=jdbc:postgresql://db:5432/lab_db \
+    --user-name=user \
+    --password=password \
+    --valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker \
+    --background-validation=true

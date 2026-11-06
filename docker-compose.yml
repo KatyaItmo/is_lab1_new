@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: postgres_lab_db
+    environment:
+      POSTGRES_DB: lab_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: wildfly_app
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_NAME=lab_db
+      - DB_USER=user
+      - DB_PASSWORD=password
+
+volumes:
+  pgdata:
