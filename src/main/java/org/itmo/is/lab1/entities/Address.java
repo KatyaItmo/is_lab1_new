@@ -7,14 +7,14 @@ import jakarta.persistence.*;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
     private String street;
 
     @ManyToOne
-    @JoinColumn(name = "location_id")
+    @JoinColumn(name = "town_id")
     private Location town;
 
     public Address() {}

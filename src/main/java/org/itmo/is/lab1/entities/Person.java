@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.itmo.is.lab1.converters.ZonedDateTimeConverter;
 
 import java.time.ZonedDateTime;
 
@@ -12,14 +13,14 @@ import java.time.ZonedDateTime;
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "eye_color")
     @Enumerated(EnumType.STRING)
     private Color eyeColor;
 
-    @Column
+    @Column(name = "hair_color")
     @Enumerated(EnumType.STRING)
     private Color hairColor;
 
@@ -28,13 +29,14 @@ public class Person {
     private Location location;
 
     @Column(nullable = false)
+    @Convert(converter = ZonedDateTimeConverter.class)
     private ZonedDateTime birthday;
 
     @Column(nullable = false)
     @Min(value = 1)
     private Integer height;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "passport_id")
     @NotBlank
     @Size(min = 8)
     private String passportID;

@@ -8,18 +8,19 @@ import jakarta.validation.constraints.Min;
 public class Organization {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "official_address_id")
     private Address officialAddress;
 
-    @Column
+    @Column(name = "annual_turnover", nullable = false)
     @Min(value = 1)
     private long annualTurnover;
 
-    @Column
+    @Column(name = "employees_count")
+    @Min(value = 1)
     private Integer employeesCount;
 
     @Column(nullable = false)
@@ -28,7 +29,7 @@ public class Organization {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private OrganizationType Type;
+    private OrganizationType type;
 
     @ManyToOne
     @JoinColumn(name = "postal_address_id", nullable = false)
@@ -42,7 +43,7 @@ public class Organization {
         this.annualTurnover = annualTurnover;
         this.employeesCount = employeesCount;
         this.rating = rating;
-        Type = type;
+        this.type = type;
         this.postalAddress = postalAddress;
     }
 
@@ -51,7 +52,7 @@ public class Organization {
         this.annualTurnover = annualTurnover;
         this.employeesCount = employeesCount;
         this.rating = rating;
-        Type = type;
+        this.type = type;
         this.postalAddress = postalAddress;
     }
 
@@ -96,11 +97,11 @@ public class Organization {
     }
 
     public OrganizationType getType() {
-        return Type;
+        return type;
     }
 
     public void setType(OrganizationType type) {
-        Type = type;
+        this.type = type;
     }
 
     public Address getPostalAddress() {

@@ -28,7 +28,6 @@ public class PersonDto {
     @Min(value = 1)
     private Integer height;
 
-    @NotNull
     @NotBlank
     @Size(min = 8)
     private String passportId;
@@ -39,16 +38,6 @@ public class PersonDto {
 
     public PersonDto(Integer id, Color eyeColor, Color hairColor, Integer locationId, OffsetDateTime birthday, Integer height, String passportId, Country nationality) {
         this.id = id;
-        this.eyeColor = eyeColor;
-        this.hairColor = hairColor;
-        this.locationId = locationId;
-        this.birthday = birthday;
-        this.height = height;
-        this.passportId = passportId;
-        this.nationality = nationality;
-    }
-
-    public PersonDto(Color eyeColor, Color hairColor, Integer locationId, OffsetDateTime birthday, Integer height, String passportId, Country nationality) {
         this.eyeColor = eyeColor;
         this.hairColor = hairColor;
         this.locationId = locationId;

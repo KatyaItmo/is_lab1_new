@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import org.itmo.is.lab1.converters.ZonedDateTimeConverter;
 
 import java.time.ZonedDateTime;
 
@@ -12,7 +13,7 @@ import java.time.ZonedDateTime;
 public class Worker {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -23,10 +24,11 @@ public class Worker {
     @JoinColumn(name = "coordinates_id", nullable = false)
     private Coordinates coordinates;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "creation_date")
+    @Convert(converter = ZonedDateTimeConverter.class)
     private ZonedDateTime creationTime;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
@@ -34,11 +36,12 @@ public class Worker {
     @Min(value = 1)
     private int salary;
 
-    @Column
+    @Column(nullable = false)
     @DecimalMin(value = "0.0", inclusive = false)
     private float rating;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "start_date")
+    @Convert(converter = ZonedDateTimeConverter.class)
     private ZonedDateTime startDate;
 
     @Column

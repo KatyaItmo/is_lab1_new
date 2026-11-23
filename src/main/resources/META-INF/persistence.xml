@@ -4,14 +4,29 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
 
-    <persistence-unit name="myAppPU" transaction-type="JTA">
+    <persistence-unit name="myAppPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <jta-data-source>java:/jboss/datasources/MyPostgresDS</jta-data-source>
+
+        <class>org.itmo.is.lab1.entities.Coordinates</class>
+        <class>org.itmo.is.lab1.entities.Location</class>
+        <class>org.itmo.is.lab1.entities.Address</class>
+        <class>org.itmo.is.lab1.entities.Organization</class>
+        <class>org.itmo.is.lab1.entities.Person</class>
+        <class>org.itmo.is.lab1.entities.Worker</class>
+        <class>org.itmo.is.lab1.entities.User</class>
+
+        <class>org.itmo.is.lab1.converters.ZonedDateTimeConverter</class>
 
         <properties>
-            <property name="eclipselink.target-database" value="PostgreSQL"/>
-            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
-            <property name="eclipselink.logging.level" value="INFO"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://db:5432/lab_db"/>
+            <property name="jakarta.persistence.jdbc.user" value="user"/>
+            <property name="jakarta.persistence.jdbc.password" value="password"/>
+
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.PostgreSQLPlatform"/>
+            <property name="eclipselink.ddl-generation" value="none"/>
             <property name="eclipselink.weaving" value="false"/>
         </properties>
     </persistence-unit>

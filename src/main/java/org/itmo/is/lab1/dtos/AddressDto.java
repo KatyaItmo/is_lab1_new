@@ -1,12 +1,12 @@
 package org.itmo.is.lab1.dtos;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 public class AddressDto {
 
     private Integer id;
 
-    @NotNull
+    @NotBlank
     private String street;
 
     private Integer locationId;
@@ -15,11 +15,6 @@ public class AddressDto {
 
     public AddressDto(Integer id, String street, Integer locationId) {
         this.id = id;
-        this.street = street;
-        this.locationId = locationId;
-    }
-
-    public AddressDto(String street, Integer locationId) {
         this.street = street;
         this.locationId = locationId;
     }

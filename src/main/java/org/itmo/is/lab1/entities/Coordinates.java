@@ -7,13 +7,13 @@ import jakarta.persistence.*;
 public class Coordinates {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
     private Double x;
 
-    @Column
+    @Column(nullable = false)
     private int y;
 
     public Coordinates() {}

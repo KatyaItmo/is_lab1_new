@@ -11,6 +11,7 @@ public class OrganizationDto {
     private Integer officialAddressId;
 
     @Min(value = 1)
+    @NotNull
     private long annualTurnover;
 
     @Min(value = 1)
@@ -29,15 +30,6 @@ public class OrganizationDto {
 
     public OrganizationDto(Integer id, Integer officialAddressId, long annualTurnover, Integer employeesCount, Long rating, OrganizationType type, Integer postalAddressId) {
         this.id = id;
-        this.officialAddressId = officialAddressId;
-        this.annualTurnover = annualTurnover;
-        this.employeesCount = employeesCount;
-        this.rating = rating;
-        this.type = type;
-        this.postalAddressId = postalAddressId;
-    }
-
-    public OrganizationDto(Integer officialAddressId, long annualTurnover, Integer employeesCount, Long rating, OrganizationType type, Integer postalAddressId) {
         this.officialAddressId = officialAddressId;
         this.annualTurnover = annualTurnover;
         this.employeesCount = employeesCount;

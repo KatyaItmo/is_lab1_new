@@ -2,7 +2,7 @@
 <jboss-deployment-structure>
     <deployment>
         <dependencies>
-            <module name="org.jboss.as.jpa.eclipselink" optional="true"/>
+            <module name="org.eclipse.persistence" services="import"/>
         </dependencies>
     </deployment>
 </jboss-deployment-structure>

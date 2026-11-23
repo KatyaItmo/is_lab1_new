@@ -13,14 +13,12 @@ public class WorkerDto {
 
     private Integer id;
 
-    @NotNull
     @NotBlank
     private String name;
 
     @NotNull
     private Integer coordinatesId;
 
-    @NotNull
     private OffsetDateTime creationTime;
 
     private Integer organizationId;
@@ -49,18 +47,6 @@ public class WorkerDto {
         this.name = name;
         this.coordinatesId = coordinatesId;
         this.creationTime = creationTime;
-        this.organizationId = organizationId;
-        this.salary = salary;
-        this.rating = rating;
-        this.startDate = startDate;
-        this.position = position;
-        this.status = status;
-        this.personId = personId;
-    }
-
-    public WorkerDto(String name, Integer coordinatesId, Integer organizationId, int salary, float rating, OffsetDateTime startDate, Position position, Status status, Integer personId) {
-        this.name = name;
-        this.coordinatesId = coordinatesId;
         this.organizationId = organizationId;
         this.salary = salary;
         this.rating = rating;

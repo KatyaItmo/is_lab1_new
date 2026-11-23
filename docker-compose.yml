@@ -21,7 +21,7 @@ services:
       - db
     environment:
       - DB_HOST=db
-      - DB_NAME=lab_db
+      - DB_NAME=lab_ db
       - DB_USER=user
       - DB_PASSWORD=password
 
