@@ -17,7 +17,8 @@ export function useWebSocket(enabled, onMessage) {
             if (isUnmounted) return;
 
             const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsUrl = `${protocol}//${window.location.host}/ws/updates`;
+            const appPrefix = window.location.pathname.replace(/\/$/, '');
+            const wsUrl = `${protocol}//${window.location.host}${appPrefix}/ws/updates`;
 
             socket = new WebSocket(wsUrl);
 

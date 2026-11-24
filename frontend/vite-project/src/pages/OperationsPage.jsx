@@ -24,7 +24,6 @@ export function OperationsPage({ wsEvent }) {
     const [fireResult, setFireResult] = useState(null);
     const [loadingFire, setLoadingFire] = useState(false);
 
-    // 6. Индексация зарплаты по ID и коэффициенту
     const [salaryWorkerId, setSalaryWorkerId] = useState('');
     const [salaryCoefficient, setSalaryCoefficient] = useState('2');
     const [salaryResult, setSalaryResult] = useState(null);
@@ -37,7 +36,7 @@ export function OperationsPage({ wsEvent }) {
                 const safe = statuses || [];
                 setAllStatuses(safe);
                 if (safe.length > 0) {
-                    setSelectedStatus(safe);
+                    setSelectedStatus(safe[0]);
                 }
             })
             .catch((error) => {

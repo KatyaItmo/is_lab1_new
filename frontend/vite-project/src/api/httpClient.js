@@ -1,4 +1,5 @@
-const BASE_URL = '/api';
+const APP_PREFIX = window.location.pathname.replace(/\/$/, '');
+const BASE_URL = `${APP_PREFIX}/api`;
 
 let onUnauthorizedCallback = null;
 
