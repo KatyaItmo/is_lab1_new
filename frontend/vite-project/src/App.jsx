@@ -1,50 +1,49 @@
-import './App.css'
-import {useState} from "react";
-import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
-import CreatePage from "./pages/CreatePage.jsx";
-import MainPage from "./pages/MainPage.jsx";
-import SearchPage from "./pages/SearchPage.jsx";
-import SvoPage from "./pages/SvoPage.jsx";
+import { useState, useCallback } from 'react';
+import { useAuth } from './context/AuthContext';
+import { useWebSocket } from './hooks/useWebSocket';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { AuthPage } from './pages/AuthPage';
+import { WorkersPage } from './pages/WorkersPage';
+import { DirectoriesPage } from './pages/DirectoriesPage';
+import { OperationsPage } from './pages/OperationsPage';
+import './App.css';
 
-function App() {
-    const [currentPage, setCurrentPage] = useState('main')
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+export default function App() {
+    const { isAuthenticated } = useAuth();
+    const [activeTab, setActiveTab] = useState('workers');
+    const [wsEvent, setWsEvent] = useState({ entity: null, timestamp: 0 });
 
-    const [message, setMessage] = useState({text: '', type: ''});
+    const handleSocketMessage = useCallback((entityName) => {
+        setWsEvent({ entity: entityName, timestamp: Date.now() });
+    }, []);
 
-    const showMessage = (text, type) => {
-        setMessage({text, type});
-        setTimeout(() => {
-            setMessage({text: '', type: ''});
-        }, 4000);
-    };
+    useWebSocket(isAuthenticated, handleSocketMessage);
+
+    if (!isAuthenticated) {
+        return (
+            <div className="app-container">
+                <Header />
+                <main className="main-content">
+                    <AuthPage />
+                </main>
+                <Footer />
+            </div>
+        );
+    }
+
 
     return (
-        <div className="page-container">
-            <Header currentPage={currentPage} setCurrentPage={setCurrentPage} isLoggedIn={isLoggedIn} />
+        <div className="app-container">
+            <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-            {message.text && (
-                <div className={`message ${message.type}`}>
-                    {message.text}
-                </div>
-            )}
-
-            <main>
-                {currentPage === 'create' ? (
-                    <CreatePage showMessage={showMessage} />
-                ) : currentPage === 'search' ? (
-                    <SearchPage showMessage={showMessage} />
-                ) : currentPage === 'svo' ? (
-                    <SvoPage showMessage={showMessage} />
-                ) : (
-                    <MainPage showMessage={showMessage} />
-                )}
+            <main className="main-content">
+                {activeTab === 'workers' && <WorkersPage wsEvent={wsEvent} />}
+                {activeTab === 'directories' && <DirectoriesPage wsEvent={wsEvent} />}
+                {activeTab === 'operations' && <OperationsPage wsEvent={wsEvent} />}
             </main>
 
             <Footer />
         </div>
     );
 }
-
-export default App;

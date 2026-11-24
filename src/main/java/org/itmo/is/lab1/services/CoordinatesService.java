@@ -67,10 +67,10 @@ public class CoordinatesService {
         if (updates != null) {
             for (DependencyReferenceDto item : updates) {
                 if (item.getReplacementId() == null) {
-                    throw new IllegalArgumentException("error: replacement Coordinates can't be null");
+                    throw new IllegalArgumentException("error: replacement coordinates cannot be null");
                 }
                 if (item.getReplacementId().equals(coordinatesId)) {
-                    throw new IllegalArgumentException("error: replacement Coordinates can't be equal to deleted");
+                    throw new IllegalArgumentException("error: replacement coordinates cannot be equal to deleted");
                 }
 
                 if (item.getEntityType() == EntityType.WORKER) {

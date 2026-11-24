@@ -26,7 +26,7 @@ public class PersonController {
     @POST
     public Response createPerson(@Valid PersonDto dto) {
         Person created = personService.createPerson(dto);
-        return Response.status(Response.Status.CREATED).entity("created Person with id=" + created.getId()).build();
+        return Response.status(Response.Status.CREATED).entity("created person with id=" + created.getId()).build();
     }
 
     @GET
@@ -50,7 +50,7 @@ public class PersonController {
     @PUT
     public Response updatePerson(@Valid PersonDto dto) {
         Person updated = personService.updatePerson(dto);
-        return Response.ok("updated Person with id=" + updated.getId()).build();
+        return Response.ok("updated person with id=" + updated.getId()).build();
     }
 
     @GET
@@ -58,7 +58,7 @@ public class PersonController {
     public Response getPersonById(@PathParam("id") Integer id) {
         Person person = personService.getPersonById(id);
         if (person == null) {
-            return Response.status(Response.Status.NOT_FOUND).entity("Person with id=" + id + " not found").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("person with id=" + id + " not found").build();
         }
         return Response.ok(person).build();
     }

@@ -30,7 +30,7 @@ public class AuthService {
         String cleanUsername = dto.getUsername().trim();
 
         if (userRepository.existsByUsername(cleanUsername)) {
-            throw new IllegalArgumentException("registration error: username '" + cleanUsername + "' is already taken");
+            throw new IllegalArgumentException("registration error: username @" + cleanUsername + " is already taken");
         }
 
         String passwordHash = hashPassword(dto.getPassword());
@@ -44,7 +44,7 @@ public class AuthService {
         String cleanUsername = dto.getUsername().trim();
 
         User user = userRepository.findByUsername(cleanUsername)
-                .orElseThrow(() -> new IllegalArgumentException("auth error: invalid username"));
+                .orElseThrow(() -> new IllegalArgumentException("username @" + cleanUsername + " not registered yet"));
 
         String inputHash = hashPassword(dto.getPassword());
         if (!user.getPasswordHash().equals(inputHash)) {

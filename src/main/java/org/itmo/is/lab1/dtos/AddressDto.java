@@ -9,14 +9,14 @@ public class AddressDto {
     @NotBlank
     private String street;
 
-    private Integer locationId;
+    private Integer townId;
 
     public AddressDto() {}
 
-    public AddressDto(Integer id, String street, Integer locationId) {
+    public AddressDto(Integer id, String street, Integer townId) {
         this.id = id;
         this.street = street;
-        this.locationId = locationId;
+        this.townId = townId;
     }
 
     public Integer getId() {
@@ -35,11 +35,11 @@ public class AddressDto {
         this.street = street;
     }
 
-    public Integer getLocationId() {
-        return locationId;
+    public Integer getTownId() {
+        return townId;
     }
 
-    public void setLocationId(Integer locationId) {
-        this.locationId = locationId;
+    public void setTownId(Integer townId) {
+        this.townId = townId;
     }
 }

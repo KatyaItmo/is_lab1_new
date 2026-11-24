@@ -27,7 +27,7 @@ public class OrganizationController {
     @POST
     public Response createOrganization(@Valid OrganizationDto dto) {
         Organization created = organizationService.createOrganization(dto);
-        return Response.status(Response.Status.CREATED).entity("created Organization with id=" + created.getId()).build();
+        return Response.status(Response.Status.CREATED).entity("created organization with id=" + created.getId()).build();
     }
 
     @GET
@@ -51,7 +51,7 @@ public class OrganizationController {
     @PUT
     public Response updateOrganization(@Valid OrganizationDto dto) {
         Organization updated = organizationService.updateOrganization(dto);
-        return Response.ok("updated Organization with id=" + updated.getId()).build();
+        return Response.ok("updated organization with id=" + updated.getId()).build();
     }
 
     @GET
@@ -66,7 +66,7 @@ public class OrganizationController {
     public Response getOrganizationById(@PathParam("id") Integer id) {
         Organization organization = organizationService.getOrganizationById(id);
         if (organization == null) {
-            return Response.status(Response.Status.NOT_FOUND).entity("Organization with id=" + id + "not found").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("organization with id=" + id + "not found").build();
         }
         return Response.ok(organization).build();
     }

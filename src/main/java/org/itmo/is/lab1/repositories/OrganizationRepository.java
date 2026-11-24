@@ -27,7 +27,7 @@ public class OrganizationRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't create Organization", e);
+            throw new RuntimeException("db error: can't create organization", e);
         } finally {
             entityManager.close();
         }
@@ -45,7 +45,7 @@ public class OrganizationRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't update Organization", e);
+            throw new RuntimeException("db error: can't update organization", e);
         } finally {
             entityManager.close();
         }
@@ -80,7 +80,7 @@ public class OrganizationRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't delete Organization with id=" + id, e);
+            throw new RuntimeException("db error: can't delete organization with id=" + id, e);
         } finally {
             entityManager.close();
         }

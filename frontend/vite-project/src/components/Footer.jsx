@@ -1,10 +1,10 @@
-function Footer() {
+import './Footer.css';
+
+export function Footer() {
     return (
-        <footer>
-            <p className="footer-p">автор: Чистякова Екатерина</p>
-            <p className="footer-p">tg: @zblvs</p>
+        <footer className="app-footer">
+            <p>Ekaterina Chistyakova</p>
+            <p>2026</p>
         </footer>
     );
 }
-
-export default Footer;

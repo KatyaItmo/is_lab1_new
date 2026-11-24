@@ -26,7 +26,7 @@ public class CoordinatesController {
     @POST
     public Response createCoordinates(@Valid Coordinates dto) {
         Coordinates created = coordinatesService.createCoordinates(dto);
-        return Response.status(Response.Status.CREATED).entity("created Coordinates with id=" + created.getId()).build();
+        return Response.status(Response.Status.CREATED).entity("created coordinates with id=" + created.getId()).build();
     }
 
     @GET

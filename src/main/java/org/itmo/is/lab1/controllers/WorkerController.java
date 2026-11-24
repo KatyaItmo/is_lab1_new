@@ -26,7 +26,7 @@ public class WorkerController {
     @POST
     public Response createWorker(@Valid WorkerDto dto) {
         Worker created = workerService.createWorker(dto);
-        return Response.status(Response.Status.CREATED).entity("created Worker with id=" + created.getId()).build();
+        return Response.status(Response.Status.CREATED).entity("created worker with id=" + created.getId()).build();
     }
 
     @GET
@@ -34,7 +34,7 @@ public class WorkerController {
     public Response getWorkerById(@PathParam("id") Integer id) {
         Worker worker = workerService.getWorkerById(id);
         if (worker == null) {
-            return Response.status(Response.Status.NOT_FOUND).entity("Worker with id=" + id + " not found").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("worker with id=" + id + " not found").build();
         }
         return Response.ok(worker).build();
     }
@@ -42,7 +42,7 @@ public class WorkerController {
     @PUT
     public Response updateWorker(@Valid WorkerDto dto) {
         Worker updated = workerService.updateWorker(dto);
-        return Response.ok("updated Worker with id=" + updated.getId()).build();
+        return Response.ok("updated worker with id=" + updated.getId()).build();
     }
 
     @DELETE
@@ -100,7 +100,7 @@ public class WorkerController {
     @Path("/{id}/fire")
     public Response fireWorker(@PathParam("id") Integer id) {
         Worker fired = workerService.fireWorker(id);
-        return Response.ok("fired Worker with id=" + fired.getId()).build();
+        return Response.ok("fired worker with id=" + fired.getId()).build();
     }
 
     @PUT
@@ -113,6 +113,6 @@ public class WorkerController {
             return Response.status(Response.Status.BAD_REQUEST).entity("parameter coefficient is required").build();
         }
         Worker updated = workerService.indexSalary(id, coefficient);
-        return Response.ok("indexed salary for Worker with id=" + updated.getId()).build();
+        return Response.ok("indexed salary for worker with id=" + updated.getId()).build();
     }
 }

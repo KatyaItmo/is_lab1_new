@@ -38,7 +38,7 @@ public class OrganizationService {
                 dto.getRating(),
                 dto.getType(),
                 addressRepository.findById(dto.getPostalAddressId())
-                        .orElseThrow(() -> new RuntimeException("error: Address with id=" + dto.getPostalAddressId() + " not found"))
+                        .orElseThrow(() -> new RuntimeException("error: address with id=" + dto.getPostalAddressId() + " not found"))
         );
 
         Organization newOrganization = organizationRepository.insert(organization);
@@ -92,7 +92,7 @@ public class OrganizationService {
                 dto.getRating(),
                 dto.getType(),
                 addressRepository.findById(dto.getPostalAddressId())
-                        .orElseThrow(() -> new RuntimeException("error: Address with id=" + dto.getPostalAddressId() + " not found"))
+                        .orElseThrow(() -> new RuntimeException("error: address with id=" + dto.getPostalAddressId() + " not found"))
         );
 
         Organization updatedOrganization = organizationRepository.update(organization);
@@ -108,11 +108,11 @@ public class OrganizationService {
 
     public void updateOrganizationOfficialAddress(Integer organizationId, Integer newAddressId) {
         Organization organization = organizationRepository.findById(organizationId)
-                .orElseThrow(() -> new RuntimeException("error: Organization with id=" + organizationId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: organization with id=" + organizationId + " not found"));
 
         Address newAddress = newAddressId != null
                 ? addressRepository.findById(newAddressId)
-                  .orElseThrow(() -> new RuntimeException("error: Address with id=" + newAddressId + " not found"))
+                  .orElseThrow(() -> new RuntimeException("error: address with id=" + newAddressId + " not found"))
                 : null;
 
         organization.setOfficialAddress(newAddress);
@@ -121,14 +121,14 @@ public class OrganizationService {
 
     public void updateOrganizationPostalAddress(Integer organizationId, Integer newAddressId) {
         if (newAddressId == null) {
-            throw new IllegalArgumentException("error: postal address can't be null for Organization");
+            throw new IllegalArgumentException("error: postal address cannot be null for organization");
         }
 
         Organization organization = organizationRepository.findById(organizationId)
-                .orElseThrow(() -> new RuntimeException("error: Organization with id=" + organizationId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: organization with id=" + organizationId + " not found"));
 
         Address newAddress = addressRepository.findById(newAddressId)
-                .orElseThrow(() -> new RuntimeException("error: Address with id=" + newAddressId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: address with id=" + newAddressId + " not found"));
 
         organization.setPostalAddress(newAddress);
         organizationRepository.update(organization);
@@ -160,7 +160,7 @@ public class OrganizationService {
         if (updates != null) {
             for (DependencyReferenceDto item : updates) {
                 if (item.getReplacementId() != null && item.getReplacementId().equals(organizationId)) {
-                    throw new IllegalArgumentException("error: replacement Organization can't be equal to deleted");
+                    throw new IllegalArgumentException("error: replacement organization cannot be equal to deleted");
                 }
 
                 if (item.getEntityType() == EntityType.WORKER) {

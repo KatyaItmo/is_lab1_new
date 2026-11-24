@@ -27,7 +27,7 @@ public class UserRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't create User", e);
+            throw new RuntimeException("db error: can't create user", e);
         } finally {
             entityManager.close();
         }

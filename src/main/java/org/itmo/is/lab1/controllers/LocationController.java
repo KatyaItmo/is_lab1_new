@@ -25,7 +25,7 @@ public class LocationController {
     @POST
     public Response createLocation(@Valid Location dto) {
         Location created = locationService.createLocation(dto);
-        return Response.status(Response.Status.CREATED).entity("created Location with id=" + created.getId()).build();
+        return Response.status(Response.Status.CREATED).entity("created location with id=" + created.getId()).build();
     }
 
     @GET

@@ -27,7 +27,7 @@ public class LocationRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't create Location", e);
+            throw new RuntimeException("db error: can't create location", e);
         } finally {
             entityManager.close();
         }
@@ -62,7 +62,7 @@ public class LocationRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't delete Location with id=" + id, e);
+            throw new RuntimeException("db error: can't delete location with id=" + id, e);
         } finally {
             entityManager.close();
         }

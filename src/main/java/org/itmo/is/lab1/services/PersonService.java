@@ -35,7 +35,7 @@ public class PersonService {
                 dto.getEyeColor(),
                 dto.getHairColor(),
                 locationRepository.findById(dto.getLocationId())
-                        .orElseThrow(() -> new RuntimeException("error: Location with id=" + dto.getLocationId() + " not found")),
+                        .orElseThrow(() -> new RuntimeException("error: location with id=" + dto.getLocationId() + " not found")),
                 dto.getBirthday().toZonedDateTime(),
                 dto.getHeight(),
                 dto.getPassportId(),
@@ -91,7 +91,7 @@ public class PersonService {
                 dto.getEyeColor(),
                 dto.getHairColor(),
                 locationRepository.findById(dto.getLocationId())
-                        .orElseThrow(() -> new RuntimeException("error: Location with id=" + dto.getLocationId() + " not found")),
+                        .orElseThrow(() -> new RuntimeException("error: location with id=" + dto.getLocationId() + " not found")),
                 dto.getBirthday().toZonedDateTime(),
                 dto.getHeight(),
                 dto.getPassportId(),
@@ -107,14 +107,14 @@ public class PersonService {
 
     public void updatePersonLocation(Integer personId, Integer newLocationId) {
         if (newLocationId == null) {
-            throw new IllegalArgumentException("error: Location can't be null for Person");
+            throw new IllegalArgumentException("error: location cannot be null for person");
         }
 
         Person person = personRepository.findById(personId)
-                .orElseThrow(() -> new RuntimeException("error: Person with id=" + personId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: person with id=" + personId + " not found"));
 
         Location newLocation = locationRepository.findById(newLocationId)
-                .orElseThrow(() -> new RuntimeException("error: Location with id=" + newLocationId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: location with id=" + newLocationId + " not found"));
 
         person.setLocation(newLocation);
         personRepository.update(person);
@@ -147,10 +147,10 @@ public class PersonService {
         if (updates != null) {
             for (DependencyReferenceDto item : updates) {
                 if (item.getReplacementId() == null) {
-                    throw new IllegalArgumentException("error: replacement Person can't be null for Worker");
+                    throw new IllegalArgumentException("error: replacement person cannot be null for worker");
                 }
                 if (item.getReplacementId().equals(personId)) {
-                    throw new IllegalArgumentException("error: replacement Person can't be equal to deleted");
+                    throw new IllegalArgumentException("error: replacement person cannot be equal to deleted");
                 }
 
                 if (item.getEntityType() == EntityType.WORKER) {

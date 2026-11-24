@@ -27,7 +27,7 @@ public class AddressRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't create Address", e);
+            throw new RuntimeException("db error: can't create address", e);
         } finally {
             entityManager.close();
         }
@@ -62,7 +62,7 @@ public class AddressRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't delete Address with id=" + id, e);
+            throw new RuntimeException("db error: can't delete address with id=" + id, e);
         } finally {
             entityManager.close();
         }
@@ -80,7 +80,7 @@ public class AddressRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't update Address", e);
+            throw new RuntimeException("db error: can't update address", e);
         } finally {
             entityManager.close();
         }

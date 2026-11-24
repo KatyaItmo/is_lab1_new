@@ -9,6 +9,10 @@ export default defineConfig({
         target: 'http://localhost:8080/app',
         changeOrigin: true,
         secure: false,
+      },
+      '/ws': {
+        target: 'ws://localhost:8080/app',
+        ws: true,
       }
     }
   }

@@ -1,0 +1,88 @@
+.subtabs-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border-pink);
+}
+
+.subtabs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.subtab-btn {
+    background: rgba(16, 8, 15, 0.55);
+    border: 2px solid var(--border-pink);
+    border-radius: 10px;
+    padding: 9px 18px;
+    font-size: 16px;
+    color: var(--text-main);
+}
+
+.subtab-btn.active {
+    background: var(--pink-main);
+    border-color: var(--pink-main);
+    color: #180c15;
+    box-shadow: 0 0 14px var(--pink-glow);
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 2px solid var(--border-pink);
+    border-radius: 14px;
+    background: rgba(16, 8, 15, 0.52);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 117, 181, 0.25);
+    font-size: 16px;
+}
+
+.data-table th {
+    background: rgba(255, 117, 181, 0.16);
+    color: var(--pink-light);
+    font-weight: bold;
+    border-bottom: 2px solid var(--border-pink);
+    white-space: nowrap;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tr:hover td {
+    background: rgba(255, 117, 181, 0.08);
+}
+
+.table-actions {
+    display: flex;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 15px;
+    border-radius: 8px;
+}
+
+.empty-table-msg {
+    text-align: center;
+    padding: 28px;
+    color: var(--text-muted);
+    font-size: 17px;
+}

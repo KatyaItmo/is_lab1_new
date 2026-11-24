@@ -27,7 +27,7 @@ public class PersonRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't create Person", e);
+            throw new RuntimeException("db error: can't create person", e);
         } finally {
             entityManager.close();
         }
@@ -45,7 +45,7 @@ public class PersonRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't update Person", e);
+            throw new RuntimeException("db error: can't update person", e);
         } finally {
             entityManager.close();
         }
@@ -80,7 +80,7 @@ public class PersonRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't delete Person with id=" + id, e);
+            throw new RuntimeException("db error: can't delete person with id=" + id, e);
         } finally {
             entityManager.close();
         }

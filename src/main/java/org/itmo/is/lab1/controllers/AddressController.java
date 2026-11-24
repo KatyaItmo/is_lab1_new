@@ -26,7 +26,7 @@ public class AddressController {
     @POST
     public Response createAddress(@Valid AddressDto dto) {
         Address created = addressService.createAddress(dto);
-        return Response.status(Response.Status.CREATED).entity("created Address with id=" + created.getId()).build();
+        return Response.status(Response.Status.CREATED).entity("created address with id=" + created.getId()).build();
     }
 
     @GET
@@ -50,7 +50,7 @@ public class AddressController {
     @PUT
     public Response updateAddress(@Valid AddressDto dto) {
         Address updated = addressService.updateAddress(dto);
-        return Response.ok("updated Address with id=" + updated.getId()).build();
+        return Response.ok("updated address with id=" + updated.getId()).build();
     }
 
     @GET

@@ -27,7 +27,7 @@ public class CoordinatesRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't create Coordinates", e);
+            throw new RuntimeException("db error: can't create coordinates", e);
         } finally {
             entityManager.close();
         }
@@ -62,7 +62,7 @@ public class CoordinatesRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't delete Coordinates with id=" + id, e);
+            throw new RuntimeException("db error: can't delete coordinates with id=" + id, e);
         } finally {
             entityManager.close();
         }

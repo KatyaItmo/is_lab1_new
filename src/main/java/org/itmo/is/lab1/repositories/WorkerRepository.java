@@ -30,7 +30,7 @@ public class WorkerRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't create Worker", e);
+            throw new RuntimeException("db error: can't create worker", e);
         } finally {
             entityManager.close();
         }
@@ -48,7 +48,7 @@ public class WorkerRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't update Worker", e);
+            throw new RuntimeException("db error: can't update worker", e);
         } finally {
             entityManager.close();
         }
@@ -121,7 +121,7 @@ public class WorkerRepository {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            throw new RuntimeException("db error: can't delete Worker with id=" + id, e);
+            throw new RuntimeException("db error: can't delete worker with id=" + id, e);
         } finally {
             entityManager.close();
         }

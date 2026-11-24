@@ -34,7 +34,7 @@ public class AddressService {
     public Address createAddress(AddressDto dto) {
         Address address = new Address(
                 dto.getStreet(),
-                dto.getLocationId() != null ? locationRepository.findById(dto.getLocationId()).orElse(null) : null
+                dto.getTownId() != null ? locationRepository.findById(dto.getTownId()).orElse(null) : null
         );
 
         Address newAddress = addressRepository.insert(address);
@@ -75,7 +75,7 @@ public class AddressService {
         Address address = new Address(
                 dto.getId(),
                 dto.getStreet(),
-                dto.getLocationId() != null ? locationRepository.findById(dto.getLocationId()).orElse(null) : null
+                dto.getTownId() != null ? locationRepository.findById(dto.getTownId()).orElse(null) : null
         );
 
         Address updatedAddress = addressRepository.update(address);
@@ -87,11 +87,11 @@ public class AddressService {
 
     public void updateAddressLocation(Integer addressId, Integer newLocationId) {
         Address address = addressRepository.findById(addressId)
-                .orElseThrow(() -> new RuntimeException("error: Address with id=" + addressId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: address with id=" + addressId + " not found"));
 
         Location newTown = newLocationId != null
                 ? locationRepository.findById(newLocationId)
-                  .orElseThrow(() -> new RuntimeException("error: Location with id=" + newLocationId + " not found"))
+                  .orElseThrow(() -> new RuntimeException("error: location with id=" + newLocationId + " not found"))
                 : null;
 
         address.setTown(newTown);
@@ -124,14 +124,14 @@ public class AddressService {
         if (updates != null) {
             for (DependencyReferenceDto item : updates) {
                 if (item.getReplacementId() != null && item.getReplacementId().equals(addressId)) {
-                    throw new IllegalArgumentException("error: replacement Address can't be equal to deleted");
+                    throw new IllegalArgumentException("error: replacement address cannot be equal to deleted");
                 }
 
                 if (item.getEntityType() == EntityType.ORGANIZATION_OFFICIAL_ADDRESS) {
                     organizationService.updateOrganizationOfficialAddress(item.getEntityId(), item.getReplacementId());
                 } else if (item.getEntityType() == EntityType.ORGANIZATION_POSTAL_ADDRESS) {
                     if (item.getReplacementId() == null) {
-                        throw new IllegalArgumentException("error: replacement Address can't be null for Organization postal address");
+                        throw new IllegalArgumentException("error: replacement address cannot be null for organization postal address");
                     }
                     organizationService.updateOrganizationPostalAddress(item.getEntityId(), item.getReplacementId());
                 }

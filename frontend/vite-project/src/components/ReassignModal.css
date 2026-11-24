@@ -1,0 +1,64 @@
+.reassign-hint {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-main);
+}
+
+.reassign-hint strong {
+    color: var(--pink-main);
+}
+
+.reassign-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reassign-group-block {
+    background: rgba(16, 8, 15, 0.55);
+    border: 2px solid var(--border-pink);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.reassign-group-title {
+    font-size: 18px;
+    color: var(--pink-light);
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--border-pink);
+    padding-bottom: 6px;
+}
+
+.reassign-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reassign-table th,
+.reassign-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 117, 181, 0.25);
+    font-size: 16px;
+}
+
+.reassign-table th {
+    color: var(--pink-main);
+    font-weight: bold;
+}
+
+.reassign-table tr:last-child td {
+    border-bottom: none;
+}
+
+.dep-id-cell {
+    font-weight: bold;
+    color: var(--pink-light);
+    width: 35%;
+}
+
+.reassign-select {
+    width: 100%;
+    font-size: 15px;
+    padding: 8px 12px;
+}

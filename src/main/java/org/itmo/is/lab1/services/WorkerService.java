@@ -79,7 +79,7 @@ public class WorkerService {
         }
 
         Worker worker = workerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("error: Worker with id=" + id + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: worker with id=" + id + " not found"));
 
         worker.setSalary(worker.getSalary() * coefficient);
 
@@ -90,19 +90,19 @@ public class WorkerService {
 
     public Worker createWorker(WorkerDto dto) {
         if (dto.getStatus() == Status.FIRED) {
-            throw new IllegalArgumentException("error: can't create worker with status FIRED");
+            throw new IllegalArgumentException("error: cannot create worker with status FIRED");
         }
         if (dto.getOrganizationId() == null) {
-            throw new IllegalArgumentException("error: Organization can't be null when creating worker");
+            throw new IllegalArgumentException("error: organization cannot be null when creating worker");
         }
 
         Organization organization = organizationRepository.findById(dto.getOrganizationId())
-                .orElseThrow(() -> new RuntimeException("error: Organization with id=" + dto.getOrganizationId() + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: organization with id=" + dto.getOrganizationId() + " not found"));
 
         Worker worker = new Worker(
                 dto.getName(),
                 coordinatesRepository.findById(dto.getCoordinatesId())
-                        .orElseThrow(() -> new RuntimeException("error: Coordinates with id=" + dto.getCoordinatesId() + " not found")),
+                        .orElseThrow(() -> new RuntimeException("error: coordinates with id=" + dto.getCoordinatesId() + " not found")),
                 organization,
                 dto.getSalary(),
                 dto.getRating(),
@@ -110,7 +110,7 @@ public class WorkerService {
                 dto.getPosition(),
                 dto.getStatus(),
                 personRepository.findById(dto.getPersonId())
-                        .orElseThrow(() -> new RuntimeException("error: Person with id=" + dto.getPersonId() + " not found"))
+                        .orElseThrow(() -> new RuntimeException("error: person with id=" + dto.getPersonId() + " not found"))
         );
 
         Worker created = workerRepository.insert(worker);
@@ -125,24 +125,24 @@ public class WorkerService {
 
     public Worker updateWorker(WorkerDto dto) {
         if (dto.getStatus() == Status.FIRED) {
-            throw new IllegalArgumentException("error: can't set status FIRED via update; use fire endpoint instead");
+            throw new IllegalArgumentException("error: cannot set status FIRED via update; use fire endpoint instead");
         }
         if (dto.getOrganizationId() == null) {
-            throw new IllegalArgumentException("error: Organization can't be null when updating worker");
+            throw new IllegalArgumentException("error: organization cannot be null when updating worker");
         }
 
         Worker existingWorker = workerRepository.findById(dto.getId())
-                .orElseThrow(() -> new RuntimeException("error: Worker with id=" + dto.getId() + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: worker with id=" + dto.getId() + " not found"));
 
         Organization oldOrganization = existingWorker.getOrganization();
         Organization newOrganization = organizationRepository.findById(dto.getOrganizationId())
-                .orElseThrow(() -> new RuntimeException("error: Organization with id=" + dto.getOrganizationId() + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: organization with id=" + dto.getOrganizationId() + " not found"));
 
         Worker worker = new Worker(
                 dto.getId(),
                 dto.getName(),
                 coordinatesRepository.findById(dto.getCoordinatesId())
-                        .orElseThrow(() -> new RuntimeException("error: Coordinates with id=" + dto.getCoordinatesId() + " not found")),
+                        .orElseThrow(() -> new RuntimeException("error: coordinates with id=" + dto.getCoordinatesId() + " not found")),
                 dto.getCreationTime() != null ? dto.getCreationTime().toZonedDateTime() : existingWorker.getCreationTime(),
                 newOrganization,
                 dto.getSalary(),
@@ -151,7 +151,7 @@ public class WorkerService {
                 dto.getPosition(),
                 dto.getStatus(),
                 personRepository.findById(dto.getPersonId())
-                        .orElseThrow(() -> new RuntimeException("error: Person with id=" + dto.getPersonId() + " not found"))
+                        .orElseThrow(() -> new RuntimeException("error: person with id=" + dto.getPersonId() + " not found"))
         );
 
         Worker updated = workerRepository.update(worker);
@@ -192,7 +192,7 @@ public class WorkerService {
 
     public Worker fireWorker(Integer id) {
         Worker worker = workerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("error: Worker with id=" + id + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: worker with id=" + id + " not found"));
 
         if (worker.getStatus() == Status.FIRED && worker.getOrganization() == null) {
             return worker;
@@ -233,10 +233,10 @@ public class WorkerService {
 
     public void updateWorkerCoordinates(Integer workerId, Integer newCoordinatesId) {
         Worker worker = workerRepository.findById(workerId)
-                .orElseThrow(() -> new RuntimeException("error: Worker with id=" + workerId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: worker with id=" + workerId + " not found"));
 
         Coordinates newCoordinates = coordinatesRepository.findById(newCoordinatesId)
-                .orElseThrow(() -> new RuntimeException("error: Coordinates with id=" + newCoordinatesId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: coordinates with id=" + newCoordinatesId + " not found"));
 
         worker.setCoordinates(newCoordinates);
         workerRepository.update(worker);
@@ -244,12 +244,12 @@ public class WorkerService {
 
     public void updateWorkerOrganization(Integer workerId, Integer newOrganizationId) {
         Worker worker = workerRepository.findById(workerId)
-                .orElseThrow(() -> new RuntimeException("error: Worker with id=" + workerId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: worker with id=" + workerId + " not found"));
 
         Organization newOrg = null;
         if (newOrganizationId != null) {
             newOrg = organizationRepository.findById(newOrganizationId)
-                    .orElseThrow(() -> new RuntimeException("error: Organization with id=" + newOrganizationId + " not found"));
+                    .orElseThrow(() -> new RuntimeException("error: organization with id=" + newOrganizationId + " not found"));
         }
 
         worker.setOrganization(newOrg);
@@ -262,14 +262,14 @@ public class WorkerService {
 
     public void updateWorkerPerson(Integer workerId, Integer newPersonId) {
         if (newPersonId == null) {
-            throw new IllegalArgumentException("error: Person can't be null for Worker");
+            throw new IllegalArgumentException("error: person cannot be null for worker");
         }
 
         Worker worker = workerRepository.findById(workerId)
-                .orElseThrow(() -> new RuntimeException("error: Worker with id=" + workerId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: worker with id=" + workerId + " not found"));
 
         Person newPerson = personRepository.findById(newPersonId)
-                .orElseThrow(() -> new RuntimeException("error: Person with id=" + newPersonId + " not found"));
+                .orElseThrow(() -> new RuntimeException("error: person with id=" + newPersonId + " not found"));
 
         worker.setPerson(newPerson);
         workerRepository.update(worker);

@@ -1,0 +1,135 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 5, 9, 0.72);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 5000;
+    animation: modalFadeIn 0.2s ease-out;
+}
+
+.modal-window {
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    background: rgba(24, 12, 22, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 3px solid var(--pink-main);
+    border-radius: 20px;
+    box-shadow:
+            0 14px 42px rgba(0, 0, 0, 0.7),
+            0 0 26px rgba(255, 117, 181, 0.35);
+    animation: modalPopIn 0.2s ease-out;
+}
+
+.modal-header {
+    padding: 20px 26px;
+    border-bottom: 3px solid var(--border-pink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.modal-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--pink-light);
+    letter-spacing: 0.8px;
+}
+
+.modal-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--pink-light);
+    font-size: 28px;
+    line-height: 1;
+    padding: 0 6px;
+}
+
+.modal-close-btn:hover:not(:disabled) {
+    background: transparent;
+    box-shadow: none;
+    color: #ffffff;
+    transform: scale(1.2);
+}
+
+.modal-body {
+    padding: 24px 26px;
+    overflow-y: auto;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.modal-field label {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--pink-light);
+}
+
+.modal-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+}
+
+.btn-primary {
+    background: var(--pink-main);
+    color: #180c15;
+    border: 2px solid var(--pink-main);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--pink-light);
+    border-color: var(--pink-light);
+    color: #180c15;
+}
+
+.btn-danger {
+    border-color: var(--danger);
+    background: rgba(255, 77, 109, 0.2);
+    color: #ffd6de;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: var(--danger);
+    color: #180c15;
+    box-shadow: 0 0 16px rgba(255, 77, 109, 0.5);
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalPopIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

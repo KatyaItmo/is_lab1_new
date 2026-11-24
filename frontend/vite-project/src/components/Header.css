@@ -1,0 +1,98 @@
+.app-header {
+    width: 100%;
+    background: rgba(24, 12, 22, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 3px solid var(--pink-main);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+}
+
+.header-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--pink-main);
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 12px var(--pink-glow);
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+/* Вкладки как чистый текст без рамок */
+.nav-tab {
+    position: relative;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 6px 2px;
+    font-size: 19px;
+    font-weight: bold;
+    color: var(--text-main);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+}
+
+/* Сбрасываем глобальный hover кнопок из index.css */
+.nav-tab:hover:not(:disabled) {
+    background: transparent;
+    box-shadow: none;
+    color: var(--pink-light);
+}
+
+/* Линия подчеркивания снизу */
+.nav-tab::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--pink-main);
+    box-shadow: 0 0 8px var(--pink-glow);
+    transition: width 0.25s ease;
+}
+
+.nav-tab:hover::after,
+.nav-tab.active::after {
+    width: 100%;
+}
+
+.nav-tab.active {
+    color: var(--pink-main);
+}
+
+.header-auth {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.header-username {
+    font-size: 17px;
+    font-weight: bold;
+    color: var(--pink-light);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+}
+
+.header-guest {
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+.header-logout-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+}

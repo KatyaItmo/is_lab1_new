@@ -1,0 +1,72 @@
+.operations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.operation-card {
+    padding: 24px;
+    background: rgba(16, 8, 15, 0.56);
+    border: 3px solid var(--border-pink);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.operation-card:hover {
+    border-color: var(--pink-main);
+    box-shadow: 0 0 20px var(--pink-glow);
+}
+
+.operation-card h3 {
+    font-size: 20px;
+    color: var(--pink-light);
+    border-bottom: 2px solid var(--border-pink);
+    padding-bottom: 10px;
+}
+
+.operation-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.operation-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.operation-result-box {
+    padding: 14px 16px;
+    background: rgba(255, 117, 181, 0.12);
+    border: 2px solid var(--pink-main);
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--pink-main);
+    text-align: center;
+    text-shadow: 0 0 10px var(--pink-glow);
+}
+
+.distinct-statuses-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.distinct-badge {
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background: rgba(255, 117, 181, 0.22);
+    border: 2px solid var(--pink-main);
+    color: var(--text-main);
+}

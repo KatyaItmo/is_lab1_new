@@ -81,14 +81,14 @@ public class LocationService {
         if (updates != null) {
             for (DependencyReferenceDto item : updates) {
                 if (item.getReplacementId() != null && item.getReplacementId().equals(locationId)) {
-                    throw new IllegalArgumentException("error: replacement Location (town) can't be equal to deleted");
+                    throw new IllegalArgumentException("error: replacement location (town) cannot be equal to deleted");
                 }
 
                 if (item.getEntityType() == EntityType.ADDRESS) {
                     addressService.updateAddressLocation(item.getEntityId(), item.getReplacementId());
                 } else if (item.getEntityType() == EntityType.PERSON) {
                     if (item.getReplacementId() == null) {
-                        throw new IllegalArgumentException("error: replacement Location can't be null for Person");
+                        throw new IllegalArgumentException("error: replacement location cannot be null for person");
                     }
                     personService.updatePersonLocation(item.getEntityId(), item.getReplacementId());
                 }
